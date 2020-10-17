@@ -1,0 +1,21 @@
+{
+  "name": "poll-based-chat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Hai-Vasyl/poll-based-chat.git",
+  "author": "Hai-Vasyl <hai.vasyl20@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"yarn server\" \"yarn client\""
+  },
+  "dependencies": {
+    "apollo-server": "^2.18.2",
+    "graphql": "^15.3.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.5"
+  }
+}

@@ -1,0 +1,68 @@
+.wrapper {
+  max-width: 100%;
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid whitesmoke;
+  border-right: 1px solid whitesmoke;
+  min-height: 100vh;
+  padding: 2em;
+  padding-bottom: calc(120px + 4em);
+  position: relative;
+}
+.message {
+  border: 1px solid lightgrey;
+  padding: 12px;
+  font-size: 1.4em;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  max-width: 100%;
+  margin-bottom: 1em;
+}
+.message__content {
+  padding-top: 10px;
+}
+.message__owner {
+  border-bottom: 1px solid lightgrey;
+}
+.message--me {
+  margin-left: auto;
+  border-color: rgb(70, 206, 70);
+}
+.form {
+  display: flex;
+  border: 1px solid lightgrey;
+  position: absolute;
+  bottom: 2em;
+  left: 2em;
+  right: 2em;
+  font-size: 1.4em;
+}
+.form__input {
+  padding: 12px;
+  flex: 1;
+  border: none;
+  min-height: 120px;
+  max-height: 120px;
+  resize: none;
+}
+.form__btn {
+  width: 200px;
+  border: none;
+  box-shadow: 0px 3px 12px lightgrey, 0px 2px 3px grey;
+  transition: 0.3s;
+}
+
+.form__btn:hover {
+  box-shadow: 0px 3px 9px lightgrey, 0px 2px 3px lightgrey;
+}
+.form__btn:active {
+  transform: scale(0.95);
+}
+.usermatch {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
