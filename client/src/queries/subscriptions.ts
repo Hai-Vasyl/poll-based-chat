@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client"
 
-export const GET_MESSAGES = gql`
-  subscription getMessages {
-    getMessages {
+export const NEW_MESSAGE = gql`
+  subscription newMessage {
+    newMessage {
       content
       id
       owner
