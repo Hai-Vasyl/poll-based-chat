@@ -23,7 +23,7 @@ const MessageForm: React.FC<MassageFormProps> = ({ owner, matchUser }) => {
 
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (!content.trim().length) {
+    if (content.trim().length === 0) {
       return
     }
     postMessage({ variables: { content, owner } })

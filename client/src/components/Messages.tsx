@@ -1,13 +1,12 @@
 import React from 'react'
-import { useQuery } from "@apollo/client"
-import { GET_MESSAGES } from "../queries/queries"
+import { useSubscription } from "@apollo/client"
+import { GET_MESSAGES } from "../queries/subscriptions"
 import { Message } from "../interfaces"
 
 const Messages: React.FC<{ owner: string }> = ({ owner }) => {
-  const { error, loading, data } = useQuery(GET_MESSAGES)
+  const { loading, data } = useSubscription(GET_MESSAGES)
 
   if (loading) return <div>Loading ...</div>
-  if (error) return <div>Error happend (</div>
   return (
     <div>
       {data.getMessages.map((elem: Message) => {

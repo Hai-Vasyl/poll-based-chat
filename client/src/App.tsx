@@ -12,7 +12,7 @@ const App: React.FC = () => {
 
   return (
     <div className="wrapper">
-      <div ><Messages owner={owner} /></div>
+      <div className="messages" ><Messages owner={owner} /></div>
       <MessageForm owner={owner} matchUser={matchUser} />
     </div>
   )
