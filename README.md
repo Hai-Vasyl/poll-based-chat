@@ -1,2 +1,2 @@
-# poll-based-chat
-Simple social network for institute course project | Testing apollo client polling
+# simple-chat-app
+Simple chat for social network (institute course project)
