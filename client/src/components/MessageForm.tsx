@@ -4,7 +4,7 @@ import { POST_MESSAGE } from "../queries/mutations"
 
 interface MassageFormProps {
   matchUser(user: string): void
-  owner: string
+  owner: string,
 }
 
 const MessageForm: React.FC<MassageFormProps> = ({ owner, matchUser }) => {
@@ -12,7 +12,7 @@ const MessageForm: React.FC<MassageFormProps> = ({ owner, matchUser }) => {
   const [user, setUser] = useState("")
   const [postMessage] = useMutation(POST_MESSAGE)
 
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === "content") {
       setContent(event.target.value)
     } else {
@@ -23,7 +23,7 @@ const MessageForm: React.FC<MassageFormProps> = ({ owner, matchUser }) => {
 
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (!content.trim().length) {
+    if (content.trim().length === 0) {
       return
     }
     postMessage({ variables: { content, owner } })
@@ -42,7 +42,7 @@ const MessageForm: React.FC<MassageFormProps> = ({ owner, matchUser }) => {
         <button>Match</button>
       </form>
       <form onSubmit={submitForm} className="form">
-        <textarea name="content" className="form__input" value={content} placeholder="Type message here" onChange={handleChange} ></textarea>
+        <input name="content" className="form__input" value={content} placeholder="Type message here" onChange={handleChange} />
         <button className="form__btn">Send</button>
       </form>
     </div>

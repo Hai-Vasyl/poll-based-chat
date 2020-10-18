@@ -1,16 +1,19 @@
 import React from 'react'
-import { useQuery } from "@apollo/client"
-import { GET_MESSAGES } from "../queries/queries"
 import { Message } from "../interfaces"
 
-const Messages: React.FC<{ owner: string }> = ({ owner }) => {
-  const { error, loading, data } = useQuery(GET_MESSAGES)
+interface PropsMessages {
+  owner: string
+  data: Message[]
+  initLoading: boolean
+  loading: boolean
+}
 
-  if (loading) return <div>Loading ...</div>
-  if (error) return <div>Error happend (</div>
+const Messages: React.FC<PropsMessages> = ({ owner, data, loading, initLoading }) => {
+
+  if (initLoading) return <div>Loading ...</div>
   return (
     <div>
-      {data.getMessages.map((elem: Message) => {
+      {data.map((elem: Message) => {
         return (
           <div key={elem.id} className={`message ${owner === elem.owner && "message--me"}`} >
             <span className="message__owner">{elem.owner}</span>
