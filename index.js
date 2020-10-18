@@ -1,4 +1,5 @@
-const { ApolloServer, gql } = require("apollo-server")
+const { ApolloServer, gql, PubSub } = require("apollo-server")
+const NEW_MESSAGE = "NEW_MESSAGE"
 
 const messages = [
   {
@@ -25,29 +26,43 @@ const typeDefs = gql`
     owner: String!
   }
   type Query {
-    getMessages: [Message]!
+    getInitialMessages: [Message!]
   }
   type Mutation {
     postMessage(content: String!, owner: String!): Message!
+  }
+  type Subscription {
+    newMessage: Message
   }
 `
 
 const resolvers = {
   Query: {
-    getMessages: () => messages,
+    getInitialMessages: () => messages,
   },
   Mutation: {
     postMessage: (_, args) => {
       const newMessage = { id: Date.now(), ...args }
       messages.push(newMessage)
+      pubsub.publish(NEW_MESSAGE, { newMessage })
       return newMessage
+    },
+  },
+  Subscription: {
+    newMessage: {
+      subscribe: (_, __, { pubsub }) => {
+        return pubsub.asyncIterator([NEW_MESSAGE])
+      },
     },
   },
 }
 
+const pubsub = new PubSub()
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ req, res }) => ({ req, res, pubsub }),
 })
 
 server.listen().then(({ url }) => {
